@@ -19,7 +19,6 @@ defmodule Tutorials.Structs.SevenWonders do
       %SevenWonders{name: "Christ the Redeemer",country: "Brazil"},
       %SevenWonders{name: "Colosseum",country: "Italy"},
       %SevenWonders{name: "The Greate Wall of China",country: "China"},
-
     ]
   end
 
@@ -49,5 +48,20 @@ defmodule Tutorials.Structs.SevenWonders do
     wonders |> Enum.reduce([], fn x,acc -> [[x.name, x.country] | acc] end)
   end
 
+  def country_name_keywork_list(wonders) do
+    wonders |> Enum.reduce([], fn %{country: country, name: name}, acc -> [{String.to_atom(country), name} | acc] end)
+  end
+
+  def all_names(wonders) do
+    wonders |> Enum.map(fn x -> x.name end)
+  end
+
+  def all_names_v2(wonders) do
+    wonders |> Enum.map(&(&1.name))
+  end
+
+  def all_names_v3(wonders) do
+    for %{name: name} <- wonders, do: name
+  end
 
 end
