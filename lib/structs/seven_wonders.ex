@@ -34,4 +34,20 @@ defmodule Tutorials.Structs.SevenWonders do
   def filter_by_country(wonders, country) do
     wonders |> Enum.filter(fn x -> x.name == country.name end)
   end
+
+  @spec in_countries_starting_with_i([t()]) :: [t()]
+  def in_countries_starting_with_i(wonders) do
+    wonders |> Enum.filter(fn %{ country: country } -> String.starts_with?(country, "I") end)
+  end
+
+  def sort_by_country_length(wonders) do
+    wonders
+    |> Enum.sort(fn x, y -> String.length(x.country) < String.length(y.country) end)
+  end
+
+  def name_country_list(wonders) do
+    wonders |> Enum.reduce([], fn x,acc -> [[x.name, x.country] | acc] end)
+  end
+
+
 end
