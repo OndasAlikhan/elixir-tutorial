@@ -1,4 +1,10 @@
 defmodule Tutorials.Lists.Map do
+  # --- Sum ---
+  @spec sum([number()], number()) :: number()
+  def sum(nums, acc \\ 0)
+  def sum([], acc), do: acc
+  def sum([head | tail], acc), do: sum(tail, acc + head)
+
   # --- Reverse ---
   def reverse(nums, acc \\ [])
   def reverse([], acc), do: acc
